@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/body.css" %}">
+        <link rel="stylesheet" href="{% static "css/signup.css" %}">
+    </head>
+    <body>
+        {% include "header.html" %}
+        <form method="post" class="signup-box">
+            {% csrf_token %}
+            <input name="username" class="username-input" placeholder="Username"/>
+            <input name="email" class="email-input" placeholder="Email"/>
+            <input name="password1" class="password1-input" placeholder="Password" type="password"/>
+            <input name="password2" class="password2-input" placeholder="Repeat Password" type="password"/>
+            <input type="submit" value="Sign Up" class="submit-button"/>
+        </form>
+    </body>
+</html>
