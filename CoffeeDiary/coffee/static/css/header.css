@@ -1,122 +1,107 @@
-header {
-    display: flex;
-    background-color: #252525;
-    width: 100%;
-    height: 5vh;
-    color: #fafafa;
-    position: static;
-    align-items: center;
+.coffee-navbar {
+    background: linear-gradient(135deg, #3E2723, #6F4E37) !important;
+    padding: 12px 0 !important;
 }
-.coffee-diary {
-    margin-left: 1vw;
-    font-size: 24px;
+
+.navbar-brand {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 700 !important;
+    color: white !important;
 }
-.login-button {
-    display: flex;
-    position: relative;
-    background-color: #b32323;
-    height: 60%;
-    width: 3.5%;
-    margin: auto;
-    margin-right: 0.25vw;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: none;
-    border: none;
-    color: #fafafa;
-    transition: all 100ms;
+
+.navbar-brand i {
+    color: #D4A76A !important;
+    margin-right: 8px !important;
 }
-.login-button:hover {
-    background-color: #7a1818;
-    transition: all 100ms;
+
+.nav-link {
+    font-weight: 500 !important;
+    font-size: 1rem !important;
+    padding: 8px 16px !important;
+    margin: 0 4px !important;
+    border-radius: 6px !important;
+    transition: all 0.3s ease !important;
 }
-.login-button:active {
-    box-shadow: inset 0px 0px 5px #000;
-    transition: all 50ms;
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #D4A76A !important;
 }
-.signup-button {
-    display: flex;
-    position: relative;
-    background-color: #b32323;
-    height: 60%;
-    width: 3.5%;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    justify-self: end;
-    margin: auto;
-    margin-right: 0.75vw;
-    margin-left: 0.25vw;
-    box-shadow: none;
-    border: none;
-    color: #fafafa;
-    transition: all 100ms;
+
+.nav-link i {
+    margin-right: 6px !important;
+    width: 18px !important;
+    text-align: center !important;
 }
-.signup-button:hover {
-    background-color: #7a1818;
-    transition: all 100ms;
+
+.btn-coffee {
+    background: linear-gradient(135deg, #6F4E37, #C19A6B) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 20px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
 }
-.signup-button:active {
-    box-shadow: inset 0px 0px 5px #000;
-    transition: all 50ms;
+
+.btn-coffee:hover {
+    background: linear-gradient(135deg, #3E2723, #6F4E37) !important;
+    transform: translateY(-2px) !important;
 }
-.user-me {
-    display: flex;
-    position: relative;
-    background-color: #b32323;
-    height: 60%;
-    min-width: 3.5%;
-    width: fit-content;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    justify-self: center;
-    margin: auto;
-    margin-right: 0.75vw;
-    margin-left: 0.25vw;
-    box-shadow: none;
-    border: none;
-    color: #fafafa;
-    transition: all 100ms;
+
+.navbar-toggler {
+    border: none !important;
+    padding: 4px 8px !important;
 }
-.user-me:hover {
-    background-color: #7a1818;
-    transition: all 100ms;
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
 }
-.user-me:active {
-    box-shadow: inset 0px 0px 5px #000;
-    transition: all 50ms;
+
+.dropdown-menu {
+    background-color: white !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 8px !important;
+    padding: 8px 0 !important;
 }
-.logout-form {
-    display: flex;
-    position: relative;
-    background-color: transparent;
-    height: 60%;
-    width: 3.5%;
-    margin: auto;
-    margin-right: 0.25vw;
-    justify-content: center;
-    align-items: center;
-    color: #fafafa;
+
+.dropdown-item {
+    padding: 8px 16px !important;
+    color: #3E2723 !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
 }
-.logout-button {
-    width: 100%;
-    height: 100%;
-    background-color: #b32323;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
-    box-shadow: none;
-    border: none;
-    color: #fafafa;
-    transition: all 100ms;
+
+.dropdown-item:hover {
+    background-color: #F5E9D9 !important;
+    color: #6F4E37 !important;
 }
-.logout-button:hover {
-    background-color: #7a1818;
-    transition: all 100ms;
+
+.dropdown-item i {
+    margin-right: 8px !important;
+    width: 18px !important;
+    color: #6F4E37 !important;
 }
-.logout-button:active {
-    box-shadow: inset 0px 0px 5px #000;
-    transition: all 50ms;
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .nav-link {
+        padding: 10px 0 !important;
+        margin: 2px 0 !important;
+    }
+
+    .btn-coffee {
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+
+    .dropdown-menu {
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        border: 1px solid rgba(62, 39, 35, 0.1) !important;
+    }
 }

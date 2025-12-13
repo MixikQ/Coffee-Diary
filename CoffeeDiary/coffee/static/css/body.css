@@ -1,4 +1,239 @@
 body {
-    margin: 0;
-    background-color: #2c2d2e;
+    background-color: #FFF9F0;
+    font-family: 'Montserrat', sans-serif;
+    color: #3E2723;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+.content-wrapper {
+    flex: 1;
+    padding: 20px 0;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    color: #3E2723;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #6F4E37, #C19A6B);
+    border-radius: 2px;
+}
+
+.section-title i {
+    color: #C19A6B;
+    margin-right: 10px;
+}
+
+.text-coffee {
+    color: #6F4E37 !important;
+}
+
+.text-coffee-light {
+    color: #C19A6B !important;
+}
+
+.text-coffee-dark {
+    color: #3E2723 !important;
+}
+
+.bg-coffee-light {
+    background-color: #FFF9F0 !important;
+}
+
+.bg-coffee-cream {
+    background-color: #F5E9D9 !important;
+}
+
+.btn-coffee-primary {
+    background: linear-gradient(135deg, #6F4E37, #C19A6B);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(111, 78, 55, 0.2);
+}
+
+.btn-coffee-primary:hover {
+    background: linear-gradient(135deg, #3E2723, #6F4E37);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(111, 78, 55, 0.3);
+}
+
+.btn-coffee-outline {
+    background-color: transparent;
+    color: #6F4E37;
+    border: 2px solid #6F4E37;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-coffee-outline:hover {
+    background-color: #6F4E37;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.coffee-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    border: 1px solid rgba(111, 78, 55, 0.1);
+}
+
+.coffee-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.coffee-card-img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.coffee-card-body {
+    padding: 20px;
+}
+
+.coffee-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3E2723;
+    margin-bottom: 10px;
+}
+
+.coffee-card-text {
+    color: #6F4E37;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.coffee-card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #F5E9D9;
+}
+
+.coffee-card-meta span {
+    color: #C19A6B;
+    font-size: 0.9rem;
+}
+
+.coffee-card-meta i {
+    margin-right: 5px;
+}
+
+.rating-stars {
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.rating-stars i {
+    margin-right: 2px;
+}
+
+.badge-coffee {
+    background-color: #6F4E37;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.alert-coffee {
+    background-color: rgba(111, 78, 55, 0.1);
+    border: 1px solid rgba(111, 78, 55, 0.2);
+    color: #3E2723;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.alert-coffee i {
+    color: #6F4E37;
+    margin-right: 10px;
+}
+
+.form-coffee .form-control {
+    border: 2px solid #F5E9D9;
+    border-radius: 8px;
+    padding: 12px 15px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.form-coffee .form-control:focus {
+    border-color: #6F4E37;
+    box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25);
+}
+
+.form-coffee label {
+    color: #3E2723;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.pagination-coffee .page-link {
+    color: #6F4E37;
+    border: 1px solid #F5E9D9;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.pagination-coffee .page-link:hover {
+    background-color: #6F4E37;
+    color: white;
+    border-color: #6F4E37;
+}
+
+.pagination-coffee .page-item.active .page-link {
+    background-color: #6F4E37;
+    border-color: #6F4E37;
+    color: white;
+}
+
+.table-coffee {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-coffee thead {
+    background: linear-gradient(135deg, #3E2723, #6F4E37);
+    color: white;
+}
+
+.table-coffee th {
+    border: none;
+    padding: 15px;
+    font-weight:
+    
