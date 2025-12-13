@@ -35,3 +35,11 @@ body {
     height: 15%;
     width: 35%;
 }
+.error-list {
+    color: #fafafa;
+    margin: auto;
+}
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
