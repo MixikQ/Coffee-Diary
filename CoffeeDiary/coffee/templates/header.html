@@ -9,7 +9,7 @@
         {% csrf_token %}
         <button class="logout-button" type="submit">Log Out</button>
         </form>
-        <button class="user-me" onclick="location.href='{% url 'profile' %}'">{{ user.username }}</div>
+        <button class="user-me" onclick="location.href='{% url 'userpage' id=user.id %}'">{{ user.username }}</button>
     {% else %}
         <button class="login-button" onclick="location.href='{% url 'login' %}'";>Log In</button>
         <button class="signup-button" onclick="location.href='{% url 'signup' %}'">Sign Up</button>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/body.css" %}">
+        <link rel="stylesheet" href="{% static "css/profile.css" %}">
+    </head>
+    <body>
+        {% include "header.html" %}
+        <form method="post" class="create-box">
+            {% csrf_token %}
+            <textarea name="title" required class="title-input" placeholder="Title"></textarea>
+            <textarea name="recipe" class="recipe-input" placeholder="Recipe"></textarea>
+            <textarea name="comment" class="comment-input" placeholder="Comment"></textarea>
+            <input type="submit" value="Create" class="submit-button"/>
+        </form>
+        {% if form.errors %}
+            <div class="error-list">
+                {% for field in form %}
+                    {% for error in field.errors%}
+                        <p>{{ field.label }}: {{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </body>
+</html>

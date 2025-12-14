@@ -1,0 +1,14 @@
+.profile-info {
+    width: fit-content;
+    height: 15%;
+    background-color: transparent;
+    color: #fafafa;
+    padding-left: 1vw;
+    padding-top: 1vh;
+}
+p {
+    margin: 0;
+}
+.user-posts-list {
+    color: #fafafa;
+}

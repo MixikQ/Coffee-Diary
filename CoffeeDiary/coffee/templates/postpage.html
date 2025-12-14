@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/body.css" %}">
+        <link rel="stylesheet" href="{% static "css/postpage.css" %}">
+    </head>
+    <body>
+        {% include "header.html" %}
+        <p>Title: {{ post.title }}</p>
+        <p>recipe: {{post.recipe }}</p>
+        <p>comment: {{ post.comment }}</p>
+        <p>by_user: {{ post.by_user }}</p>
+        <p>date: {{ post.date }}</p>
+        {% if user.is_authenticated %}
+            {% if user.id == post.by_user.id %}
+                <button class="edit-post-button" onclick="location.href='{% url 'edit-post' id=post.id %}'">Edit Post</button>
+                <form action="{% url 'delete-post' id=post.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="delete-post-button" type="submit">Delete Post</button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </body>
+</html>

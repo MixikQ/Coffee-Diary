@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static "css/body.css" %}">
+        <link rel="stylesheet" href="{% static "css/body.css" %}">
+    </head>
+    <body>
+        {% include "header.html" %}
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="title" required class="title-input" placeholder="Title">{{ post.title }}</textarea>
+            <textarea name="recipe" class="recipe-input" placeholder="Recipe">{{ post.recipe }}</textarea>
+            <textarea name="comment" class="comment-input" placeholder="Comment">{{ post.comment }}</textarea>
+            <input type="submit" value="Update" class="submit-button"/>
+        </form>
+    </body>
+</html>

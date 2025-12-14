@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
-from .forms import SignUpForm, LoginForm
+from .forms import SignUpForm, LoginForm, PostCreationForm
 from django.contrib.auth.models import User
 from .models import Post
 
@@ -32,12 +32,56 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def profile(request, id):
-    data = { "user": User.objects.get(id=id),
+    data = { "profile": User.objects.get(id=id),
              "posts": Post.objects.filter(by_user = id) }
     return render(request, 'profile.html', data)
 
-def profile_redirect(request):
-    id = request.user.id
-    if id is not None:
-        return redirect('userpage', id = id)
-    return redirect('login')
+def edit_profile(request, id):
+    return redirect('userpage', id=request.user.id)
+
+def postpage(request, id):
+    try:
+        data = { "post": Post.objects.get(id=id) }
+    except:
+        return redirect('home')
+    return render(request, 'postpage.html', data)
+
+def create_post(request):
+    if request.method == "POST":
+        form = PostCreationForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.by_user = request.user
+            post.save()
+            return redirect('post', id=post.id)
+    else: 
+        form = PostCreationForm()
+    return render(request, 'create-post.html', {'form': form})
+
+def edit_post(request, id):
+    try:
+        post = Post.objects.get(id=id)
+    except:
+        return redirect('home')
+    if post.by_user != request.user:
+        return redirect('postpage', id=id)
+    if request.method == "POST":
+        form = PostCreationForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('postpage', id=post.id)
+    else:
+        form = PostCreationForm(instance=post)   
+    data = { "post": post,
+             "form": form }
+    return render(request, 'edit-post.html', data)
+
+def delete_post(request, id):
+    try:
+        if request.method == "POST":
+            post = Post.objects.get(id=id)
+            if request.user == post.by_user:
+                Post.objects.get(id=post.id).delete()
+                return redirect('userpage', id=post.by_user.id)
+    except:
+        return redirect('home')
