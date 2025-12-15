@@ -1,12 +1,114 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
-    </head>
-    <body>
-        {% include "header.html" %}
-        <div class="user-info"></div>
+
+{% block title %}Профиль - Кофейный Дневник{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="profile-header text-center p-4 mb-4 rounded" style="background: linear-gradient(135deg, #3E2723, #6F4E37); color: white;">
+        <div class="profile-avatar mx-auto mb-3">
+            <i class="fas fa-user fa-3x"></i>
+        </div>
+        <h1 class="h2 mb-2">{{ user.username|default:"Пользователь" }}</h1>
+        <p class="mb-1"><i class="fas fa-envelope me-1"></i>{{ user.email|default:"email@example.com" }}</p>
+        <span class="badge bg-warning mt-2">Бариста</span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="mb-4 text-coffee-dark">
+                <i class="fas fa-mug-hot me-2"></i>Мои рецепты
+            </h3>
+            
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Эфиопия Йоргашеф</h5>
+                            <p class="card-text text-muted small">
+                                <i class="fas fa-calendar me-1"></i>13 декабря 2024<br>
+                                <i class="fas fa-star me-1"></i>4.2/5.0
+                            </p>
+                            <a href="#" class="btn btn-sm btn-outline-coffee">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Бразилия Сантос</h5>
+                            <p class="card-text text-muted small">
+                                <i class="fas fa-calendar me-1"></i>10 декабря 2024<br>
+                                <i class="fas fa-star me-1"></i>4.8/5.0
+                            </p>
+                            <a href="#" class="btn btn-sm btn-outline-coffee">Редактировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-    </body>
-</html>
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title text-coffee-dark">
+                        <i class="fas fa-chart-line me-2"></i>Статистика
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-mug-hot me-2"></i>Рецептов: 2</li>
+                        <li class="mb-2"><i class="fas fa-comment me-2"></i>Комментариев: 5</li>
+                        <li class="mb-2"><i class="fas fa-star me-2"></i>Средний рейтинг: 4.5</li>
+                        <li><i class="fas fa-calendar me-2"></i>На сайте: 2 дня</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-coffee-dark">
+                        <i class="fas fa-cog me-2"></i>Настройки
+                    </h5>
+                    <a href="#" class="btn btn-coffee w-100 mb-2">
+                        <i class="fas fa-edit me-1"></i>Редактировать профиль
+                    </a>
+                    <a href="#" class="btn btn-outline-coffee w-100">
+                        <i class="fas fa-lock me-1"></i>Сменить пароль
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 4px solid white;
+        background-color: #F5E9D9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6F4E37;
+    }
+    
+    .text-coffee-dark { color: #3E2723; }
+    
+    .btn-outline-coffee {
+        background-color: transparent;
+        color: #6F4E37;
+        border: 2px solid #6F4E37;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-coffee:hover {
+        background-color: #6F4E37;
+        color: white;
+    }
+</style>
+{% endblock %}

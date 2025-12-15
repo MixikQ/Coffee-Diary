@@ -1,10 +1,119 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
-    </head>
-    <body>
-        {% include "header.html" %}
-    </body>
-</html>
+
+{% block title %}Главная - Кофейный Дневник{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="hero-section text-center mb-5 p-4 rounded" style="background: linear-gradient(rgba(111, 78, 55, 0.9), rgba(193, 154, 107, 0.8)); color: white;">
+        <h1 class="display-5 mb-3">Кофейный Дневник</h1>
+        <p class="lead mb-4">Делитесь рецептами, находите вдохновение, совершенствуйте мастерство</p>
+        <a href="#" class="btn btn-light btn-lg me-2">
+            <i class="fas fa-plus me-1"></i>Добавить рецепт
+        </a>
+        <a href="#" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-search me-1"></i>Найти рецепты
+        </a>
+    </div>
+
+    <h2 class="text-center mb-4 text-coffee-dark">
+        <i class="fas fa-fire me-2"></i>Популярные рецепты
+    </h2>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card coffee-card">
+                <div class="card-img-top" style="height: 200px; background: #F5E9D9; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-coffee fa-4x" style="color: #6F4E37;"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Эфиопия Йоргашеф</h5>
+                    <p class="card-text text-muted">
+                        <i class="fas fa-fire me-1"></i>Светлая обжарка<br>
+                        <i class="fas fa-filter me-1"></i>Воронка<br>
+                        <i class="fas fa-clock me-1"></i>2:30 мин
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="rating">
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </span>
+                            <span class="ms-2">4.5</span>
+                        </div>
+                        <span class="badge bg-coffee">Новичок</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card coffee-card">
+                <div class="card-img-top" style="height: 200px; background: #F5E9D9; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-coffee fa-4x" style="color: #6F4E37;"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Бразилия Сантос</h5>
+                    <p class="card-text text-muted">
+                        <i class="fas fa-fire me-1"></i>Средняя обжарка<br>
+                        <i class="fas fa-tint me-1"></i>Эспрессо<br>
+                        <i class="fas fa-clock me-1"></i>27 сек
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="rating">
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </span>
+                            <span class="ms-2">4.0</span>
+                        </div>
+                        <span class="badge bg-coffee">Бариста</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card coffee-card">
+                <div class="card-img-top" style="height: 200px; background: #F5E9D9; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-coffee fa-4x" style="color: #6F4E37;"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Колумбия Эксельсо</h5>
+                    <p class="card-text text-muted">
+                        <i class="fas fa-fire me-1"></i>Тёмная обжарка<br>
+                        <i class="fas fa-beer me-1"></i>Френч-пресс<br>
+                        <i class="fas fa-clock me-1"></i>4:00 мин
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="rating">
+                            <span class="text-warning">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="ms-2">5.0</span>
+                        </div>
+                        <span class="badge bg-warning text-dark">Гуру</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-coffee-dark { color: #3E2723; }
+    .bg-coffee { background-color: #6F4E37 !important; color: white; }
+    .coffee-card { transition: transform 0.3s ease; }
+    .coffee-card:hover { transform: translateY(-5px); }
+</style>
+{% endblock %}

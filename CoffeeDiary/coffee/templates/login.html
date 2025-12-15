@@ -1,29 +1,44 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
-        <link rel="stylesheet" href="{% static "css/login.css" %}">
-    </head>
-    <body>
-        {% include "header.html" %}
-        <form method="post" class="login-box">
-            {% csrf_token %}
-            <input name="username" required class="username-input" placeholder="Username"/>
-            <input name="password" required class="password-input" placeholder="Password" type="password"/>
-            <input type="submit" value="Log In" class="submit-button"/>
-        </form>
-        {% if form.errors %}
-            <div class="error-list">
-                {% for field in form %}
-                    {% for error in field.errors%}
-                        <p>{{ field.label }}: {{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-            </div>
-        {% endif %}
-    </body>
-</html>
+
+{% block title %}Вход - Кофейный Дневник{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <i class="fas fa-sign-in-alt"></i>
+            <h2>Вход в систему</h2>
+        </div>
+
+        <div class="login-body">
+            <form method="post" class="login-form">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username">Имя пользователя</label>
+                    <input type="text" class="form-control" id="username" name="username" required placeholder="Введите имя пользователя">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Введите пароль">
+                        <button type="button" class="password-toggle-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt me-2"></i>Войти
+                </button>
+
+                <div class="login-footer">
+                    <p>Нет аккаунта? <a href="{% url 'signup' %}" class="login-link">Зарегистрируйтесь</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
