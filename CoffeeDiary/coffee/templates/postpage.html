@@ -14,7 +14,7 @@
   {% if user.is_authenticated %}
     {% if post.by_user == user %}
   <div class="buttons">
-    <button>Редактировать</button>
+    <button onclick="location.href='{% url 'edit-post' id=post.id %}'">Редактировать</button>
     <form action="{% url 'delete-post' id=post.id %}" method="post">
         {% csrf_token %}
         <button type="submit">Удалить</button>

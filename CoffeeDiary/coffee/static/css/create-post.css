@@ -1,0 +1,63 @@
+.post-create {
+    max-width: 900px;
+    word-break: break-word;
+    margin: 25px auto 60px;
+    padding: 20px 40px;
+    text-align: justify;
+    align-items: center;
+    justify-content: center;
+    border: solid 3px #5e4130ab;
+    border-radius: 20px;
+}
+.recipe, .comment {
+    font-size: 18px;
+    padding: 0;
+    margin: 0 0 20px;
+}
+.recipe::before {
+    content: "Рецепт: ";
+    font-weight: bold;    
+} 
+.comment::before {
+    content: "Комментарий: ";
+    font-weight: bold;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 70%;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 40px;
+}
+.userdate {
+    margin: 0;
+    padding: 0;
+}
+button {
+    padding: 14px;
+    background-color: transparent;
+    border-radius: 8px;
+    border-color: #5e41307a;
+    font-size: 16px;
+    transition: all 150ms;
+}
+button:hover {
+    border-color: #5e4130;
+    transition: all 150ms;
+}
+input, textarea {
+    display: block;
+    padding: 0;
+    margin: 0 0 20px;
+    width: 100%;
+    font-size: 18px;
+}
+label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.title {
+    font-size: 18px;
+}

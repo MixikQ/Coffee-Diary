@@ -1,26 +1,19 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
-        <link rel="stylesheet" href="{% static "css/profile.css" %}">
-    </head>
-    <body>
-        <form method="post" class="create-box">
-            {% csrf_token %}
-            <textarea name="title" required class="title-input" placeholder="Title"></textarea>
-            <textarea name="recipe" class="recipe-input" placeholder="Recipe"></textarea>
-            <textarea name="comment" class="comment-input" placeholder="Comment"></textarea>
-            <input type="submit" value="Create" class="submit-button"/>
-        </form>
-        {% if form.errors %}
-            <div class="error-list">
-                {% for field in form %}
-                    {% for error in field.errors%}
-                        <p>{{ field.label }}: {{ error }}</p>
-                    {% endfor %}
-                {% endfor %}
-            </div>
-        {% endif %}
-    </body>
-</html>
+{% block title %}Написание поста{%endblock %} 
+{% block content %}
+<link rel="stylesheet" href="{% static "css/create-post.css" %}">
+<form method="post" class="post-create">
+  <label for="title" class="title">Название: </label>
+  <input name="title" required type="text" id="title"/>
+  <label for="recipe">Рецепт: </label>
+  <textarea name="recipe" class="recipe" id="recipe"></textarea>
+  <label for="comment">Комментарий: </label>
+  <textarea name="comment" class="comment" id="comment"></textarea>
+  <div class="wrapper">
+    <p class="userdate">Автор: {{ user }}</p>
+  </div>
+    {% csrf_token %}
+  <button type="submit">Создать</button>
+</form>
+{% endblock %}
