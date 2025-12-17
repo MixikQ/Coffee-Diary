@@ -1,18 +1,225 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 {% load static %}
 <html>
     <head>
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
-        <link rel="stylesheet" href="{% static "css/body.css" %}">
+        <link rel="stylesheet" href="{% static 'css/body.css' %}">
+        <!-- Bootstrap 5 -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .edit-container {
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 30px;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            }
+            .form-header {
+                text-align: center;
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 2px solid #6F4E37;
+            }
+            .form-header h2 {
+                color: #5D4037;
+                font-weight: 700;
+            }
+            .form-icon {
+                font-size: 3rem;
+                color: #6F4E37;
+                margin-bottom: 15px;
+            }
+            .form-label {
+                font-weight: 600;
+                color: #5D4037;
+                margin-bottom: 8px;
+                display: block;
+            }
+            .form-control {
+                border-radius: 8px;
+                border: 2px solid #D7CCC8;
+                padding: 12px 15px;
+                transition: all 0.3s;
+            }
+            .form-control:focus {
+                border-color: #6F4E37;
+                box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25);
+            }
+            .btn-coffee {
+                background-color: #6F4E37;
+                color: white;
+                border: none;
+                padding: 10px 25px;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+            .btn-coffee:hover {
+                background-color: #8D6E63;
+                transform: translateY(-2px);
+            }
+            .btn-outline-coffee {
+                border: 2px solid #6F4E37;
+                color: #6F4E37;
+                background: transparent;
+                padding: 10px 25px;
+                border-radius: 8px;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+            .btn-outline-coffee:hover {
+                background-color: #6F4E37;
+                color: white;
+            }
+            .char-counter {
+                font-size: 0.85rem;
+                color: #757575;
+                text-align: right;
+                margin-top: 5px;
+            }
+            .tips-box {
+                background: #FFF3E0;
+                border-left: 4px solid #FF9800;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 20px;
+            }
+        </style>
     </head>
     <body>
-        {% include "header.html" %}
-        <form method="post">
-            {% csrf_token %}
-            <textarea name="title" required class="title-input" placeholder="Title">{{ post.title }}</textarea>
-            <textarea name="recipe" class="recipe-input" placeholder="Recipe">{{ post.recipe }}</textarea>
-            <textarea name="comment" class="comment-input" placeholder="Comment">{{ post.comment }}</textarea>
-            <input type="submit" value="Update" class="submit-button"/>
-        </form>
+        {% include 'header.html' %}
+        
+        <div class="edit-container">
+            <div class="form-header">
+                <div class="form-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h2>Редактировать кофейную запись</h2>
+                <p class="text-muted">Обновите информацию о вашем кофе</p>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Название кофе -->
+                <div class="mb-4">
+                    <label class="form-label">
+                        <i class="fas fa-heading me-2"></i>Название кофе
+                    </label>
+                    <textarea name="title" required class="form-control" rows="2" 
+                              placeholder="Введите название кофе или сорт..." 
+                              id="title-field">{{ post.title }}</textarea>
+                    <div class="char-counter">
+                        <span id="title-counter">0</span>/100 символов
+                    </div>
+                </div>
+                
+                <!-- Рецепт приготовления -->
+                <div class="mb-4">
+                    <label class="form-label">
+                        <i class="fas fa-list-ol me-2"></i>Рецепт приготовления
+                    </label>
+                    <textarea name="recipe" class="form-control" rows="5"
+                              placeholder="Опишите рецепт приготовления (пропорции, время, температура)..." 
+                              id="recipe-field">{{ post.recipe }}</textarea>
+                    <div class="char-counter">
+                        <span id="recipe-counter">0</span>/2000 символов
+                    </div>
+                </div>
+                
+                <!-- Вкусовые ощущения -->
+                <div class="mb-4">
+                    <label class="form-label">
+                        <i class="fas fa-comment-dots me-2"></i>Вкусовые ощущения и комментарии
+                    </label>
+                    <textarea name="comment" class="form-control" rows="4"
+                              placeholder="Опишите вкус, аромат, послевкусие и ваши впечатления..." 
+                              id="comment-field">{{ post.comment }}</textarea>
+                    <div class="char-counter">
+                        <span id="comment-counter">0</span>/1000 символов
+                    </div>
+                </div>
+                
+                <!-- Подсказки -->
+                <div class="tips-box">
+                    <h6><i class="fas fa-lightbulb me-2"></i>Советы по заполнению:</h6>
+                    <ul class="mb-0" style="font-size: 0.9rem;">
+                        <li>Указывайте страну происхождения и сорт кофе в названии</li>
+                        <li>Будьте точны в пропорциях и времени приготовления</li>
+                        <li>Опишите не только вкус, но и аромат и послевкусие</li>
+                        <li>Делитесь личными впечатлениями и рекомендациями</li>
+                    </ul>
+                </div>
+                
+                <!-- Кнопки -->
+                <div class="d-flex justify-content-between mt-5 pt-3 border-top">
+                    <div>
+                        <button type="button" class="btn btn-danger" 
+                                onclick="if(confirm('Вы уверены, что хотите удалить эту запись?')) { 
+                                    document.getElementById('delete-form').submit(); 
+                                }">
+                            <i class="fas fa-trash me-2"></i>Удалить запись
+                        </button>
+                    </div>
+                    
+                    <div>
+                        <a href="{% url 'postpage' post.id %}" class="btn btn-secondary me-2">
+                            <i class="fas fa-times me-2"></i>Отмена
+                        </a>
+                        <button type="submit" class="btn btn-coffee">
+                            <i class="fas fa-save me-2"></i>Сохранить изменения
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <!-- Скрытая форма для удаления -->
+            <form id="delete-form" method="post" action="{% url 'delete-post' post.id %}" style="display: none;">
+                {% csrf_token %}
+            </form>
+        </div>
+        
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+        <script>
+            // Функция подсчета символов
+            function setupCharCounter(textareaId, counterId, maxLength) {
+                const textarea = document.getElementById(textareaId);
+                const counter = document.getElementById(counterId);
+                
+                function updateCounter() {
+                    const length = textarea.value.length;
+                    counter.textContent = length;
+                    
+                    if (length > maxLength) {
+                        counter.style.color = '#dc3545';
+                        textarea.style.borderColor = '#dc3545';
+                    } else if (length > maxLength * 0.8) {
+                        counter.style.color = '#ffc107';
+                        textarea.style.borderColor = '#ffc107';
+                    } else {
+                        counter.style.color = '#757575';
+                        textarea.style.borderColor = '#D7CCC8';
+                    }
+                }
+                
+                textarea.addEventListener('input', updateCounter);
+                updateCounter(); // Инициализация
+            }
+            
+            // Инициализация счетчиков при загрузке страницы
+            document.addEventListener('DOMContentLoaded', function() {
+                setupCharCounter('title-field', 'title-counter', 100);
+                setupCharCounter('recipe-field', 'recipe-counter', 2000);
+                setupCharCounter('comment-field', 'comment-counter', 1000);
+            });
+        </script>
     </body>
 </html>
