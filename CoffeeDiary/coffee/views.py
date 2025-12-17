@@ -3,10 +3,13 @@ from django.contrib.auth import login, authenticate
 from .forms import SignUpForm, LoginForm, PostCreationForm
 from django.contrib.auth.models import User
 from .models import Post
+from datetime import timedelta
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
     posts = Post.objects.all()
+    posts = posts.order_by('-date', 'title')
     return render(request, "index.html", { "posts": posts})
 
 def signup_view(request):
@@ -33,8 +36,15 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 def profile(request, id):
+    posts = Post.objects.filter(by_user = id)
+    posts = posts.order_by('-date', 'title')
+    now = timezone.now()
+    time_elapsed = now - User.objects.get(id=id).date_joined
+    time_elapsed = time_elapsed.days
     data = { "profile": User.objects.get(id=id),
-             "posts": Post.objects.filter(by_user = id) }
+             "posts": posts,
+             "posts_count": posts.count(),
+             "time": time_elapsed }
     return render(request, 'profile.html', data)
 
 def edit_profile(request, id):

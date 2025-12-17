@@ -9,8 +9,8 @@
         <div class="profile-avatar mx-auto mb-3">
             <i class="fas fa-user fa-3x"></i>
         </div>
-        <h1 class="h2 mb-2">{{ user.username|default:"Пользователь" }}</h1>
-        <p class="mb-1"><i class="fas fa-envelope me-1"></i>{{ user.email|default:"email@example.com" }}</p>
+        <h1 class="h2 mb-2">{{ profile.username|default:"Пользователь" }}</h1>
+        <p class="mb-1"><i class="fas fa-envelope me-1"></i>{{ profile.email|default:"email@example.com" }}</p>
     </div>
 
     <div class="row">
@@ -20,31 +20,23 @@
             </h3>
             
             <div class="row">
+                {% for post in posts %}
                 <div class="col-md-6 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Эфиопия Йоргашеф</h5>
+                            <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text text-muted small">
-                                <i class="fas fa-calendar me-1"></i>13 декабря 2024<br>
-                                <i class="fas fa-star me-1"></i>4.2/5.0
+                                <i class="fas fa-calendar me-1"></i>{{ post.date }}
                             </p>
-                            <a href="#" class="btn btn-sm btn-outline-coffee">Редактировать</a>
+                            {% if user.is_authenticated %}
+                                {% if user == post.by_user %}
+                                    <a href="{% url 'edit-post' id=post.id %}" class="btn btn-sm btn-outline-coffee">Редактировать</a>
+                                {% endif %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-6 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Бразилия Сантос</h5>
-                            <p class="card-text text-muted small">
-                                <i class="fas fa-calendar me-1"></i>10 декабря 2024<br>
-                                <i class="fas fa-star me-1"></i>4.8/5.0
-                            </p>
-                            <a href="#" class="btn btn-sm btn-outline-coffee">Редактировать</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         
@@ -55,27 +47,28 @@
                         <i class="fas fa-chart-line me-2"></i>Статистика
                     </h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-mug-hot me-2"></i>Рецептов: 2</li>
-                        {% comment %} <li class="mb-2"><i class="fas fa-comment me-2"></i>Комментариев: 5</li> {% endcomment %}
-                        {% comment %} <li class="mb-2"><i class="fas fa-star me-2"></i>Средний рейтинг: 4.5</li> {% endcomment %}
-                        <li><i class="fas fa-calendar me-2"></i>На сайте: 2 дня</li>
+                        <li class="mb-2"><i class="fas fa-mug-hot me-2"></i>Рецептов: {{ posts_count }}</li>
+                        <li><i class="fas fa-calendar me-2"></i>На сайте: {{ time }} дня</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-coffee-dark">
-                        <i class="fas fa-cog me-2"></i>Настройки
-                    </h5>
-                    <a href="#" class="btn btn-coffee w-100 mb-2">
-                        <i class="fas fa-edit me-1"></i>Редактировать профиль
-                    </a>
-                    <a href="#" class="btn btn-outline-coffee w-100">
-                        <i class="fas fa-lock me-1"></i>Сменить пароль
-                    </a>
-                </div>
-            </div>
+            {% if user.is_authenticated %}
+                {% if user == profile %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-coffee-dark">
+                                <i class="fas fa-cog me-2"></i>Настройки
+                            </h5>
+                            <a href="#" class="btn btn-coffee w-100 mb-2">
+                                <i class="fas fa-edit me-1"></i>Редактировать профиль
+                            </a>
+                            <a href="#" class="btn btn-outline-coffee w-100">
+                                <i class="fas fa-lock me-1"></i>Сменить пароль
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
     </div>
 </div>
