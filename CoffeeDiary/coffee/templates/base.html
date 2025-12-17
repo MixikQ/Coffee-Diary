@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark coffee-navbar">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <i class="fas fa-mug-hot me-2"></i>
                 <span class="brand-text">Кофейный Дневник</span>
             </a>
@@ -24,12 +24,12 @@
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'index' %}">
+                        <a class="nav-link active" href="{% url 'home' %}">
                             <i class="fas fa-home me-1"></i> Главная
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{% url 'create-post' %}">
                             <i class="fas fa-plus-circle me-1"></i> Новый рецепт
                         </a>
                     </li>
@@ -41,9 +41,12 @@
                                 <i class="fas fa-user-circle me-1"></i> {{ user.username }}
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user me-1"></i> Профиль</a></li>
+                                <li><a class="dropdown-item" href="{% url 'userpage' id=user.id %}"><i class="fas fa-user me-1"></i> Профиль</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt me-1"></i> Выйти</a></li>
+                                <form id="logout-link" method="post" action="{% url 'logout' %}" style="display:none">
+                                    {% csrf_token %}
+                                </form>
+                                <li><a class="dropdown-item" href="#" onclick="document.getElementById('logout-link').submit(); return false;"><i class="fas fa-sign-out-alt me-1"></i> Выйти</a></li>
                             </ul>
                         </div>
                     {% else %}
@@ -84,7 +87,7 @@
                 <div class="col-lg-4 mb-3">
                     <h5 class="footer-title">Навигация</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'index' %}" class="footer-link">Главная</a></li>
+                        <li><a href="{% url 'home' %}" class="footer-link">Главная</a></li>
                         <li><a href="#" class="footer-link">Все рецепты</a></li>
                         <li><a href="#" class="footer-link">О проекте</a></li>
                     </ul>
