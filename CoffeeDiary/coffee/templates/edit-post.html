@@ -189,7 +189,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <script>
-            // Функция подсчета символов
+           
             function setupCharCounter(textareaId, counterId, maxLength) {
                 const textarea = document.getElementById(textareaId);
                 const counter = document.getElementById(counterId);
@@ -211,10 +211,10 @@
                 }
                 
                 textarea.addEventListener('input', updateCounter);
-                updateCounter(); // Инициализация
+                updateCounter(); 
             }
             
-            // Инициализация счетчиков при загрузке страницы
+          
             document.addEventListener('DOMContentLoaded', function() {
                 setupCharCounter('title-field', 'title-counter', 100);
                 setupCharCounter('recipe-field', 'recipe-counter', 2000);
