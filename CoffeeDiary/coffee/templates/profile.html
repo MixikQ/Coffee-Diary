@@ -103,4 +103,11 @@
         color: white;
     }
 </style>
+{% if user.is_authenticated and user.id == profile.id %}
+    <div style="margin-top: 10px;">
+        <a href="{% url 'edit-profile' %}" class="btn btn-outline-primary btn-sm">
+            <i class="fas fa-edit"></i> Редактировать профиль (новая версия)
+        </a>
+    </div>
+{% endif %}
 {% endblock %}
