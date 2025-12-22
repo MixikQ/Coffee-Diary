@@ -8,7 +8,7 @@ echo "    <div class='alert alert-info mt-3'>" >> coffee/templates/edit-profile.
 echo "        <h5>Функционал в разработке</h5>" >> coffee/templates/edit-profile.html
 echo "        <p>Эта страница скоро будет доступна. Сейчас можно вернуться в профиль.</p>" >> coffee/templates/edit-profile.html
 echo "    </div>" >> coffee/templates/edit-profile.html
-echo "    <a href="{% url 'userpage' id=user.id %}" class='btn btn-primary'>" >> coffee/templates/edit-profile.html
+echo "    <a href='{% url \"profile\" %}' class='btn btn-primary'>" >> coffee/templates/edit-profile.html
 echo "        <i class='fas fa-arrow-left'></i> Вернуться в профиль" >> coffee/templates/edit-profile.html
 echo "    </a>" >> coffee/templates/edit-profile.html
 echo "</div>" >> coffee/templates/edit-profile.html
