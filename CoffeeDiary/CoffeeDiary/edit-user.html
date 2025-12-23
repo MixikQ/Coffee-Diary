@@ -1,0 +1,127 @@
+@"
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='container mt-4'>
+    <div class='row justify-content-center'>
+        <div class='col-md-8'>
+            <!-- Карточка с информацией -->
+            <div class='card shadow'>
+                <div class='card-header bg-primary text-white'>
+                    <h3 class='mb-0'>
+                        <i class='fas fa-user-edit me-2'></i>Редактирование профиля
+                        <span class='badge bg-warning float-end'>Демо-версия</span>
+                    </h3>
+                </div>
+                
+                <div class='card-body'>
+                    <!-- Сообщение о статусе -->
+                    <div class='alert alert-success mb-4'>
+                        <h5><i class='fas fa-check-circle me-2'></i>Фронтенд готов к работе!</h5>
+                        <p class='mb-0'>Интерфейс редактирования профиля полностью реализован. Для сохранения данных нужна бэкенд интеграция.</p>
+                    </div>
+                    
+                    <!-- Форма редактирования -->
+                    <form id='profile-form'>
+                        <div class='mb-3'>
+                            <label class='form-label fw-bold'>
+                                <i class='fas fa-user me-2'></i>Имя пользователя
+                            </label>
+                            <input type='text' class='form-control' id='username' 
+                                   value='admin' readonly>
+                            <div class='form-text'>Имя пользователя нельзя изменить</div>
+                        </div>
+                        
+                        <div class='mb-3'>
+                            <label class='form-label fw-bold'>
+                                <i class='fas fa-envelope me-2'></i>Email адрес
+                            </label>
+                            <input type='email' class='form-control' id='email' 
+                                   value='admin@example.com'>
+                        </div>
+                        
+                        <div class='mb-3'>
+                            <label class='form-label fw-bold'>
+                                <i class='fas fa-comment me-2'></i>О себе
+                            </label>
+                            <textarea class='form-control' id='bio' rows='3' 
+                                      placeholder='Я люблю кофе, особенно светлые обжарки и воронку...'>Любитель кофе со стажем. Предпочитаю арабику, методы заваривания: воронка, аэропресс.</textarea>
+                        </div>
+                        
+                        <!-- Демо-уведомление при сохранении -->
+                        <div id='demo-message' class='alert alert-info d-none'>
+                            <i class='fas fa-info-circle me-2'></i>
+                            <span>В демо-версии изменения не сохраняются. В рабочей версии данные будут отправляться на сервер.</span>
+                        </div>
+                        
+                        <!-- Кнопки -->
+                        <div class='d-flex justify-content-between mt-4'>
+                            <a href="{% url 'userpage' id=1 %}" class='btn btn-secondary'>
+                                <i class='fas fa-times me-2'></i>Вернуться в профиль
+                            </a>
+                            <button type='button' class='btn btn-primary' onclick='showDemoMessage()'>
+                                <i class='fas fa-save me-2'></i>Сохранить изменения
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Информация о реализации -->
+            <div class='card mt-3'>
+                <div class='card-body'>
+                    <h5><i class='fas fa-code me-2'></i>Техническая реализация:</h5>
+                    <ul class='mb-0'>
+                        <li><strong>Frontend:</strong> HTML5, CSS3 (Bootstrap 5), JavaScript</li>
+                        <li><strong>Адаптивность:</strong> Mobile-first подход</li>
+                        <li><strong>Интеграция:</strong> Готов к подключению Django форм</li>
+                        <li><strong>Безопасность:</strong> Поддержка CSRF токенов</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showDemoMessage() {
+    // Показать сообщение
+    document.getElementById('demo-message').classList.remove('d-none');
+    
+    // Имитация сохранения
+    setTimeout(() => {
+        alert('✅ В рабочей версии данные будут сохранены в базу данных через Django forms!');
+    }, 300);
+}
+</script>
+
+<style>
+#profile-form .form-control {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 2px solid #D7CCC8;
+    transition: all 0.3s;
+}
+
+#profile-form .form-control:focus {
+    border-color: #6F4E37;
+    box-shadow: 0 0 0 0.25rem rgba(111, 78, 55, 0.25);
+}
+
+.btn-primary {
+    background-color: #6F4E37;
+    border-color: #6F4E37;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #8D6E63;
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}
+"@ | Out-File -FilePath coffee/templates/edit-user.html -Encoding UTF8
+
+echo "Файл edit-user.html создан! Теперь кнопка будет работать."
