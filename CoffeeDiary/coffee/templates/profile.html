@@ -102,5 +102,14 @@
         background-color: #6F4E37;
         color: white;
     }
+    <!-- Внутри профиля, например, рядом с кнопкой редактирования профиля -->
+<div class="btn-group" role="group">
+    <a href="{% url 'edit_profile' %}" class="btn btn-outline-dark">
+        <i class="fas fa-edit"></i> Редактировать профиль
+    </a>
+    <a href="{% url 'change_password' %}" class="btn btn-outline-dark">
+        <i class="fas fa-key"></i> Изменить пароль
+    </a>
+</div>
 </style>
 
