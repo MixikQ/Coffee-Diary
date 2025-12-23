@@ -59,8 +59,8 @@
                             <h5 class="card-title text-coffee-dark">
                                 <i class="fas fa-cog me-2"></i>Настройки
                             </h5>
-                            <a href="#" class="btn btn-coffee w-100 mb-2">
-                                <i class="fas fa-edit me-1"></i>Редактировать профиль
+                            <a href="{% url 'edit-user' id=user.id %}" class="btn btn-coffee w-100 mb-2">
+                                 <i class="fas fa-edit me-1"></i>Редактировать профиль
                             </a>
                             <a href="#" class="btn btn-outline-coffee w-100">
                                 <i class="fas fa-lock me-1"></i>Сменить пароль
@@ -103,11 +103,4 @@
         color: white;
     }
 </style>
-{% if user.is_authenticated and user.id == profile.id %}
-    <div style="margin-top: 10px;">
-        <a href="{% url 'edit-profile' %}" class="btn btn-outline-primary btn-sm">
-            <i class="fas fa-edit"></i> Редактировать профиль (новая версия)
-        </a>
-    </div>
-{% endif %}
-{% endblock %}
+
