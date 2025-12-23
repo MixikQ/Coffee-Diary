@@ -12,3 +12,33 @@ p {
 .user-posts-list {
     color: #fafafa;
 }
+/* Стили для формы изменения пароля */
+.password-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.password-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.password-alert {
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+/* Стили для сообщений об ошибках */
+.errorlist {
+    list-style: none;
+    padding: 0;
+    color: #dc3545;
+    font-size: 0.9em;
+}
+
+.errorlist li {
+    margin: 5px 0;
+}
