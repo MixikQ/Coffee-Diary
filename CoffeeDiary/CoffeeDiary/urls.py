@@ -27,6 +27,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('u/<int:id>/', views.profile, name='userpage'),
     path('u/<int:id>/edit/', views.edit_profile, name='edit-user'),
+    # Добавляем маршрут для изменения пароля
+    path('change-password/', views.change_password, name='change_password'),
     path('p/<int:id>/', views.postpage, name='postpage'),
     path('p/create/', views.create_post, name='create-post'),
     path('p/<int:id>/edit/', views.edit_post, name='edit-post'),
