@@ -6,7 +6,6 @@ from .models import Post
 from datetime import timedelta
 from django.utils import timezone
 
-# Create your views here.
 def index(request):
     posts = Post.objects.all()
     posts = posts.order_by('-date', 'title')
@@ -96,3 +95,25 @@ def delete_post(request, id):
                 return redirect('userpage', id=post.by_user.id)
     except:
         return redirect('home')
+    from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import update_session_auth_hash
+from .forms import CustomPasswordChangeForm
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = CustomPasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Обновляем сессию, чтобы пользователь не вышел из системы
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Ваш пароль успешно изменен!')
+            return redirect('profile', username=request.user.username)
+        else:
+            messages.error(request, 'Пожалуйста, исправьте ошибки ниже.')
+    else:
+        form = CustomPasswordChangeForm(request.user)
+    
+    return render(request, 'change_password.html', {'form': form})
